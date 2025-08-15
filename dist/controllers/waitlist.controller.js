@@ -4,16 +4,11 @@ exports.WaitlistController = void 0;
 const waitlist_repository_1 = require("../repositories/waitlist.repository");
 const waitlist_schema_1 = require("../domain/schemas/waitlist.schema");
 const response_1 = require("../utils/response");
-const email_service_1 = require("../utils/email.service");
 class WaitlistController {
     static async join(req, res) {
         try {
             const validatedData = waitlist_schema_1.waitlistCreateSchema.parse(req.body);
             const entry = await waitlist_repository_1.WaitlistRepository.create(validatedData);
-            await email_service_1.EmailService.sendWaitlistConfirmation({
-                name: validatedData.name,
-                email: validatedData.email,
-            });
             return (0, response_1.createdResponse)(res, entry, "Successfully joined the waitlist");
         }
         catch (error) {

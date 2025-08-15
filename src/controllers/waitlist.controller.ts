@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import { WaitlistRepository } from "../repositories/waitlist.repository";
 import { waitlistCreateSchema } from "../domain/schemas/waitlist.schema";
 import { successResponse, createdResponse } from "../utils/response";
-import { EmailService } from "../utils/email.service";
 
 export class WaitlistController {
   /**
@@ -15,12 +14,6 @@ export class WaitlistController {
 
       // Create waitlist entry
       const entry = await WaitlistRepository.create(validatedData);
-
-      // Send confirmation email to user
-      await EmailService.sendWaitlistConfirmation({
-        name: validatedData.name,
-        email: validatedData.email,
-      });
 
       return createdResponse(res, entry, "Successfully joined the waitlist");
     } catch (error) {
