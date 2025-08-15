@@ -1,6 +1,6 @@
-import { Pool, QueryResult } from 'pg';
-import { config } from '../config/config';
-import { log } from './logger';
+import { Pool, QueryResult, QueryResultRow } from "pg";
+import { config } from "../config/config";
+import { log } from "./logger";
 
 // Create a connection pool
 const pool = new Pool({
@@ -8,8 +8,8 @@ const pool = new Pool({
 });
 
 // Log pool events
-pool.on('error', (err) => {
-  log.error('Unexpected error on idle client', err);
+pool.on("error", (err) => {
+  log.error("Unexpected error on idle client", err);
   process.exit(-1);
 });
 
@@ -22,7 +22,7 @@ function formatValue(value: any): any {
 }
 
 // Generic query executor with error handling
-async function executeQuery<T>(
+async function executeQuery<T extends QueryResultRow>(
   query: string,
   params?: any[]
 ): Promise<QueryResult<T>> {
@@ -32,7 +32,7 @@ async function executeQuery<T>(
     const result = await client.query<T>(query, formattedParams);
     return result;
   } catch (error) {
-    log.error('Database query error', {
+    log.error("Database query error", {
       error,
       query,
       params,
@@ -48,12 +48,12 @@ export const db = {
   /**
    * Execute a SELECT query
    */
-  async select<T>({
+  async select<T extends QueryResultRow>({
     table,
-    columns = ['*'],
-    where = '',
+    columns = ["*"],
+    where = "",
     params = [],
-    orderBy = '',
+    orderBy = "",
     limit = 0,
     offset = 0,
   }: {
@@ -65,7 +65,7 @@ export const db = {
     limit?: number;
     offset?: number;
   }): Promise<T[]> {
-    let query = `SELECT ${columns.join(', ')} FROM ${table}`;
+    let query = `SELECT ${columns.join(", ")} FROM ${table}`;
     if (where) query += ` WHERE ${where}`;
     if (orderBy) query += ` ORDER BY ${orderBy}`;
     if (limit > 0) query += ` LIMIT ${limit}`;
@@ -78,10 +78,10 @@ export const db = {
   /**
    * Execute an INSERT query
    */
-  async insert<T>({
+  async insert<T extends QueryResultRow>({
     table,
     data,
-    returning = ['*'],
+    returning = ["*"],
   }: {
     table: string;
     data: Record<string, any>;
@@ -92,9 +92,9 @@ export const db = {
     const placeholders = values.map((_, i) => `$${i + 1}`);
 
     const query = `
-      INSERT INTO ${table} (${columns.join(', ')})
-      VALUES (${placeholders.join(', ')})
-      RETURNING ${returning.join(', ')}
+      INSERT INTO ${table} (${columns.join(", ")})
+      VALUES (${placeholders.join(", ")})
+      RETURNING ${returning.join(", ")}
     `;
 
     const result = await executeQuery<T>(query, values);
@@ -104,12 +104,12 @@ export const db = {
   /**
    * Execute an UPDATE query
    */
-  async update<T>({
+  async update<T extends QueryResultRow>({
     table,
     data,
     where,
     params = [],
-    returning = ['*'],
+    returning = ["*"],
   }: {
     table: string;
     data: Record<string, any>;
@@ -120,23 +120,24 @@ export const db = {
     const dataEntries = Object.entries(data);
     const setColumns = dataEntries
       .map((_, i) => `${dataEntries[i][0]} = $${i + 1}`)
-      .join(', ');
-    
+      .join(", ");
+
     const values = [
       ...dataEntries.map(([_, value]) => formatValue(value)),
-      ...params.map(formatValue)
+      ...params.map(formatValue),
     ];
 
     const paramOffset = dataEntries.length;
-    const whereClause = where.replace(/\$(\d+)/g, (_, num) => 
-      `$${parseInt(num) + paramOffset}`
+    const whereClause = where.replace(
+      /\$(\d+)/g,
+      (_, num) => `$${parseInt(num) + paramOffset}`
     );
 
     const query = `
       UPDATE ${table}
       SET ${setColumns}
       WHERE ${whereClause}
-      RETURNING ${returning.join(', ')}
+      RETURNING ${returning.join(", ")}
     `;
 
     const result = await executeQuery<T>(query, values);
@@ -146,11 +147,11 @@ export const db = {
   /**
    * Execute a DELETE query
    */
-  async delete<T>({
+  async delete<T extends QueryResultRow>({
     table,
     where,
     params = [],
-    returning = ['*'],
+    returning = ["*"],
   }: {
     table: string;
     where: string;
@@ -160,7 +161,7 @@ export const db = {
     const query = `
       DELETE FROM ${table}
       WHERE ${where}
-      RETURNING ${returning.join(', ')}
+      RETURNING ${returning.join(", ")}
     `;
 
     const result = await executeQuery<T>(query, params.map(formatValue));
@@ -170,7 +171,10 @@ export const db = {
   /**
    * Execute a custom query
    */
-  async query<T>(query: string, params?: any[]): Promise<QueryResult<T>> {
+  async query<T extends QueryResultRow>(
+    query: string,
+    params?: any[]
+  ): Promise<QueryResult<T>> {
     return executeQuery<T>(query, params?.map(formatValue));
   },
 
@@ -179,7 +183,7 @@ export const db = {
    */
   async beginTransaction(): Promise<any> {
     const client = await pool.connect();
-    await client.query('BEGIN');
+    await client.query("BEGIN");
     return client;
   },
 
@@ -187,7 +191,7 @@ export const db = {
    * Commit a transaction
    */
   async commitTransaction(client: any): Promise<void> {
-    await client.query('COMMIT');
+    await client.query("COMMIT");
     client.release();
   },
 
@@ -195,7 +199,7 @@ export const db = {
    * Rollback a transaction
    */
   async rollbackTransaction(client: any): Promise<void> {
-    await client.query('ROLLBACK');
+    await client.query("ROLLBACK");
     client.release();
   },
 };

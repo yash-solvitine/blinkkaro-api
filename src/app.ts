@@ -47,8 +47,10 @@ app.use((_, res) => {
 });
 
 // Error logging
-app.on("error", (error: Error) => {
-  log.error("Server error", { error: error.message });
+app.on("error", (err: any) => {
+  log.error("Server error", {
+    error: err instanceof Error ? err.message : String(err),
+  });
 });
 
 export default app;

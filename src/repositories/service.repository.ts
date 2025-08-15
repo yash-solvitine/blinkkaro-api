@@ -140,7 +140,7 @@ export class ServiceRepository {
       ${whereClause}
     `;
     const countResult = await db.query<{ total: number }>(countQuery, params);
-    const total = parseInt(countResult.rows[0].total);
+    const total = Number(countResult.rows[0].total);
 
     // Get paginated results
     const query = `
@@ -175,7 +175,7 @@ export class ServiceRepository {
       throw new NotFoundError("Service not found");
     }
 
-    return result[0];
+    return result[0] as IService;
   }
 
   /**

@@ -1,19 +1,19 @@
-import { Request, Response, NextFunction } from 'express';
-import { ZodError } from 'zod';
-import { AppError } from '../utils/errors';
-import { log } from '../utils/logger';
-import { config } from '../config/config';
+import { Request, Response, NextFunction } from "express";
+import { ZodError } from "zod";
+import { AppError } from "../utils/errors";
+import { log } from "../utils/logger";
+import { config } from "../config/config";
 
 export const errorHandler = (
   err: Error,
   req: Request,
   res: Response,
-  next: NextFunction
+  _next: NextFunction
 ) => {
   if (err instanceof AppError) {
     if (err.isOperational) {
       return res.status(err.statusCode).json({
-        status: 'error',
+        status: "error",
         message: err.message,
       });
     }
@@ -21,14 +21,14 @@ export const errorHandler = (
 
   if (err instanceof ZodError) {
     return res.status(400).json({
-      status: 'error',
-      message: 'Validation error',
+      status: "error",
+      message: "Validation error",
       errors: err.errors,
     });
   }
 
   // Log unexpected errors
-  log.error('Unexpected error', {
+  log.error("Unexpected error", {
     error: err.message,
     stack: err.stack,
     path: req.path,
@@ -36,13 +36,14 @@ export const errorHandler = (
   });
 
   // Don't leak error details in production
-  const message = config.server.nodeEnv === 'production'
-    ? 'Something went wrong'
-    : err.message;
+  const message =
+    config.server.nodeEnv === "production"
+      ? "Something went wrong"
+      : err.message;
 
-  res.status(500).json({
-    status: 'error',
+  return res.status(500).json({
+    status: "error",
     message,
-    ...(config.server.nodeEnv !== 'production' && { stack: err.stack }),
+    ...(config.server.nodeEnv !== "production" && { stack: err.stack }),
   });
-}; 
+};

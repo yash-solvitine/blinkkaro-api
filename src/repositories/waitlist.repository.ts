@@ -74,7 +74,7 @@ export class WaitlistRepository {
       throw new NotFoundError("Waitlist entry not found");
     }
 
-    return result[0];
+    return result[0] as IWaitlist;
   }
 
   /**
@@ -87,7 +87,7 @@ export class WaitlistRepository {
       params: [email],
     });
 
-    return result[0] || null;
+    return (result[0] as IWaitlist) || null;
   }
 
   /**
@@ -100,7 +100,7 @@ export class WaitlistRepository {
       params: [phone],
     });
 
-    return result[0] || null;
+    return (result[0] as IWaitlist) || null;
   }
 
   /**
@@ -117,12 +117,12 @@ export class WaitlistRepository {
     const total = parseInt(countResult.rows[0].count);
 
     // Get paginated results
-    const entries = await db.select({
+    const entries = (await db.select({
       table: this.TABLE,
       orderBy: "created_at DESC",
       limit,
       offset: (page - 1) * limit,
-    });
+    })) as IWaitlist[];
 
     return {
       entries,
