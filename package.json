@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node dist/server.js",
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
-    "build": "tsc && cp -r src/db dist/db",
+    "build": "tsc && cp -r src/db dist",
     "lint": "eslint . --ext .ts",
     "test": "jest",
     "test:watch": "jest --watch",
