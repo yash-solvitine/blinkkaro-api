@@ -12,10 +12,17 @@
     "test:watch": "jest --watch",
     "db:init": "ts-node src/db/init.ts"
   },
-  "keywords": ["booking", "services", "platform", "typescript", "node"],
+  "keywords": [
+    "booking",
+    "services",
+    "platform",
+    "typescript",
+    "node"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@emailjs/nodejs": "^5.0.2",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.0",

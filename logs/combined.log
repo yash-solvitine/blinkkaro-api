@@ -98,3 +98,32 @@
 {"email":"john.doe@example.com","level":"info","message":"User logged in successfully","service":"blinkkaro-api","timestamp":"2025-08-15T09:28:12.980Z","userId":"006e9f05-82b7-4ce9-ba5c-2e2c40879ab2"}
 {"email":"john.doe@example.com","level":"info","message":"User logged in successfully","service":"blinkkaro-api","timestamp":"2025-08-15T09:32:44.778Z","userId":"006e9f05-82b7-4ce9-ba5c-2e2c40879ab2"}
 {"level":"info","message":"Shutting down server...","service":"blinkkaro-api","timestamp":"2025-08-15T09:35:20.333Z"}
+{"level":"info","message":"Redis connected successfully","service":"blinkkaro-api","timestamp":"2025-08-15T13:26:29.613Z"}
+{"level":"info","message":"Database schema initialized successfully","service":"blinkkaro-api","timestamp":"2025-08-15T13:26:29.715Z"}
+{"level":"info","message":"Database initialized successfully","service":"blinkkaro-api","timestamp":"2025-08-15T13:26:29.716Z"}
+{"level":"info","message":"Server is running on port 5500","service":"blinkkaro-api","timestamp":"2025-08-15T13:26:29.718Z"}
+{"level":"info","message":"Shutting down server...","service":"blinkkaro-api","timestamp":"2025-08-15T13:26:34.291Z"}
+{"level":"info","message":"Redis connected successfully","service":"blinkkaro-api","timestamp":"2025-08-15T13:56:13.012Z"}
+{"level":"info","message":"Database schema initialized successfully","service":"blinkkaro-api","timestamp":"2025-08-15T13:56:13.262Z"}
+{"level":"info","message":"Database initialized successfully","service":"blinkkaro-api","timestamp":"2025-08-15T13:56:13.263Z"}
+{"level":"info","message":"Server is running on port 5500","service":"blinkkaro-api","timestamp":"2025-08-15T13:56:13.266Z"}
+{"email":"yash.soni@solvitine.com","error":{"status":403,"text":"API calls are disabled for non-browser applications"},"level":"error","message":"Error sending waitlist confirmation email","service":"blinkkaro-api","timestamp":"2025-08-15T13:58:23.865Z"}
+{"level":"info","message":"Shutting down server...","service":"blinkkaro-api","timestamp":"2025-08-15T14:00:49.978Z"}
+{"level":"info","message":"Redis connected successfully","service":"blinkkaro-api","timestamp":"2025-08-15T14:02:02.611Z"}
+{"level":"info","message":"Database schema initialized successfully","service":"blinkkaro-api","timestamp":"2025-08-15T14:02:02.850Z"}
+{"level":"info","message":"Database initialized successfully","service":"blinkkaro-api","timestamp":"2025-08-15T14:02:02.851Z"}
+{"level":"info","message":"Server is running on port 5500","service":"blinkkaro-api","timestamp":"2025-08-15T14:02:02.852Z"}
+{"level":"info","message":"Shutting down server...","service":"blinkkaro-api","timestamp":"2025-08-15T14:02:08.527Z"}
+{"level":"info","message":"Server closed","service":"blinkkaro-api","timestamp":"2025-08-15T14:02:40.441Z"}
+{"level":"info","message":"Redis connected successfully","service":"blinkkaro-api","timestamp":"2025-08-15T14:02:47.738Z"}
+{"level":"info","message":"Database schema initialized successfully","service":"blinkkaro-api","timestamp":"2025-08-15T14:02:48.053Z"}
+{"level":"info","message":"Database initialized successfully","service":"blinkkaro-api","timestamp":"2025-08-15T14:02:48.054Z"}
+{"level":"info","message":"Server is running on port 5500","service":"blinkkaro-api","timestamp":"2025-08-15T14:02:48.057Z"}
+{"email":"yash.soni@solvitine.com","error":"The public key is required. Visit https://dashboard.emailjs.com/admin/account","level":"error","message":"Error sending waitlist confirmation email","service":"blinkkaro-api","timestamp":"2025-08-15T14:02:51.482Z"}
+{"level":"info","message":"Shutting down server...","service":"blinkkaro-api","timestamp":"2025-08-15T14:03:13.094Z"}
+{"level":"info","message":"Redis connected successfully","service":"blinkkaro-api","timestamp":"2025-08-15T14:03:13.371Z"}
+{"level":"info","message":"Database schema initialized successfully","service":"blinkkaro-api","timestamp":"2025-08-15T14:03:13.674Z"}
+{"level":"info","message":"Database initialized successfully","service":"blinkkaro-api","timestamp":"2025-08-15T14:03:13.674Z"}
+{"level":"info","message":"Server is running on port 5500","service":"blinkkaro-api","timestamp":"2025-08-15T14:03:13.676Z"}
+{"email":"yash.soni@solvitine.com","error":{"status":403,"text":"API calls are disabled for non-browser applications"},"level":"error","message":"Error sending waitlist confirmation email","service":"blinkkaro-api","timestamp":"2025-08-15T14:03:25.326Z"}
+{"level":"info","message":"Shutting down server...","service":"blinkkaro-api","timestamp":"2025-08-15T14:39:00.697Z"}
