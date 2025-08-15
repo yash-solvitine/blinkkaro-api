@@ -132,3 +132,8 @@
 {"level":"info","message":"Database initialized successfully","service":"blinkkaro-api","timestamp":"2025-08-15T17:31:34.218Z"}
 {"level":"info","message":"Server is running on port 5500","service":"blinkkaro-api","timestamp":"2025-08-15T17:31:34.220Z"}
 {"level":"info","message":"Shutting down server...","service":"blinkkaro-api","timestamp":"2025-08-15T17:31:37.200Z"}
+{"level":"info","message":"Redis connected successfully","service":"blinkkaro-api","timestamp":"2025-08-15T17:35:15.414Z"}
+{"level":"info","message":"Database schema initialized successfully","service":"blinkkaro-api","timestamp":"2025-08-15T17:35:16.010Z"}
+{"level":"info","message":"Database initialized successfully","service":"blinkkaro-api","timestamp":"2025-08-15T17:35:16.012Z"}
+{"level":"info","message":"Server is running on port 5500","service":"blinkkaro-api","timestamp":"2025-08-15T17:35:16.015Z"}
+{"level":"info","message":"Shutting down server...","service":"blinkkaro-api","timestamp":"2025-08-15T17:36:05.437Z"}
